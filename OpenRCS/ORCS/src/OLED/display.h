@@ -10,6 +10,7 @@ void setFrameCall(bool call);
 
 void drawStatusFrame(OLEDDisplay *display, OLEDDisplayUiState* state, int16_t x, int16_t y);
 void drawMessageFrame(OLEDDisplay *display, OLEDDisplayUiState* state, int16_t x, int16_t y);
+void drawGPSFrame(OLEDDisplay *display, OLEDDisplayUiState* state, int16_t x, int16_t y);
 
 extern IOMgr iomgr;
 extern Status status;

@@ -1,6 +1,9 @@
 #ifndef ORCS_CONFIG
 #define ORCS_CONFIG
 
+#define MODE_NETWORK
+//#define MODE_PERSONAL
+
 #include<src/secrets.h>
 #include<WiFi.h>
 

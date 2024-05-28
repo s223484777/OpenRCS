@@ -51,17 +51,19 @@ void loop() {
     iomgr.led_onboard = !iomgr.btn_onboard;
   }
 
-  if(iomgr.btn_a != last_state.btn_a){
-    if(!iomgr.btn_a){
-      loranetPage("Test page.");
+  #ifdef MODE_NETWORK
+    if(iomgr.btn_a != last_state.btn_a){
+      if(!iomgr.btn_a){
+        loranetPage("Test page. Test0 Test1 Test2.");
+      }
     }
-  }
 
-  if(iomgr.mq_digital != last_state.mq_digital){
-    if(iomgr.mq_digital && status.mode == 1){
-      loranetAlert("MQ135 Air Quality Alert!");
+    if(iomgr.mq_digital != last_state.mq_digital){
+      if(iomgr.mq_digital && status.mode == 1){
+        loranetAlert("MQ135 Air Quality Alert!");
+      }
     }
-  }
+  #endif
 
   last_state = iomgr;
 }

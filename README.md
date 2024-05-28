@@ -35,3 +35,10 @@ Personal nodes will NOT rebroadcast any messages, and instead passively wait for
 When uploading to a device, simply set the status.mode in setup to whichever node mode is needed for the device, and upload. The network information can be modified in the secrets.h file, where the frequecy for the network and the network and access codes can be changed.
 
 The GPS modules do not work well indoors, so the time may not sync when testing indoors.
+
+# Requirements
+The project is set up using VS Code and PlatformIO, using the following libraries:
+*Arduino.h (included in PlatformIO)
+*LoRa by Sandeep Mistry (Available in PlatformIO)
+*TinyGPSPlus (included in lib/)
+*ThingPulse OLED SSD1306 (included in lib/)

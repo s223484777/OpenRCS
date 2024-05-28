@@ -28,6 +28,9 @@ bool loraUpdate(){
     msg.access = data.substring(9, 18);
     msg.src_mac = data.substring(19, 37);
     msg.msg = data.substring(39);
+    char timestamp[6];
+    sprintf(timestamp, "%02d:%02d", status.gps.time.hour(), status.gps.time.minute());
+    msg.timestamp = status.gps.date.year() > 2000 ? timestamp : "--:--";
 
     return true;
   }
@@ -44,19 +47,21 @@ void loranetPage(String msg){
 }
 
 bool loraMessage(Message msg){
-  if(msg.access == PUBLIC_NET_ACCESS){ // General public message
-    loranetPage(msg.msg);
-    return true;
-  }else if(msg.access == CONTROL_NET_ACCESS){ // No network controls implemented yet
-    return false;
-  }else{ // Alert message, rebroadcast
-    loranetAlert(msg.msg);
-    return true;
-  }
+  #ifdef MODE_NETWORK
+    if(msg.access.startsWith(PUBLIC_NET_ACCESS)){ // General public message, rebroadcast
+      loranetPage(msg.msg);
+      return true;
+    }else if(msg.access.startsWith(CONTROL_NET_ACCESS)){ // No network controls implemented yet
+      return false;
+    }else{ // Alert message, rebroadcast
+      loranetAlert(msg.msg);
+      return true;
+    }
+  #endif
 }
 
 bool loraTX(String msg, int access_idx){
-  if(millis() > next_tx){
+  if(millis() > next_tx || access_idx == 2){ // Always rebroadcast an alert
     LoRa.beginPacket();
     LoRa.println(conf.network_key);
     LoRa.println(conf.access_key[access_idx]);

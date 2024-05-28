@@ -1,6 +1,7 @@
 #ifndef ORCS_LORA
 #define ORCS_LORA
 
+#include<src/config.h>
 #include<src/objects.h>
 
 void loraInit(String mac);
