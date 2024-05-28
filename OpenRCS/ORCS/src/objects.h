@@ -5,6 +5,7 @@
 #include<src/config.h>
 #include<TinyGPS++.h>
 
+// Stores the states for the IO
 struct IOMgr{
   bool btn_onboard = false;
   bool btn_a       = false;
@@ -13,16 +14,12 @@ struct IOMgr{
   bool led_onboard = false;
   bool led_a       = false;
   bool led_b       = false;
-  int buzz_pwm     =     0;
+  uint8_t buzz_pwm =     0;
 
   bool mq_digital;
 };
 
-struct APConfig{
-  char ap_ssid[13] = "OpenRCS Node";
-  char ap_pass[9] = WiFi_PSK;
-};
-
+// Stores the configuration for the LoRa module
 struct LoRaConfig{
   double freq = NETWORK_BAND;
   char network_key[9] = NETWORK_KEY;
@@ -30,6 +27,7 @@ struct LoRaConfig{
   int tx_timeout = NETWORK_TX_TIMEOUT_MS;
 };
 
+// Stores the statuses
 struct Status{
   int mode;
   TinyGPSPlus gps;
@@ -38,6 +36,7 @@ struct Status{
   int wifi_status = 0;
 };
 
+// Stores the message data
 struct Message{
   float rssi;
   String timestamp = "Waiting";

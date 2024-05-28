@@ -5,7 +5,7 @@ Open Remote Communication System
 This project began life as a bushfire detection system, however due to some shipping issues and failing parts has turned into a more general LoRa based communication network. (I'm looking at you, BOTH the temperature sensors >:( Yes, they both died.)
 
 There are 2 operating modes for the nodes on this system. The first mode is the network node, which is responsible for rebroadcasting messages locally (with a timeout to prevent flooding the network) and monitoring the smoke sensor to generate alerts, and the second mode is responsible for receiving pages and alerts from the network.
-This network is primarily a broadcasting network, meaning that every node will receive all messages and no encryption is available.
+This network is primarily a repeating and alerting network, meaning that every node will receive all messages and no encryption is available.
 
 # Network Nodes
 Network nodes comprise of:
@@ -26,13 +26,12 @@ Personal nodes comprise of:
 *LoRa module (onboard the TTGO LoRa Module)
 *OLED display (onboard the TTGO LoRa Module)
 *GPS receiver
-*Buzzer
 *Action button
 
-Personal nodes will NOT rebroadcast any messages, and instead passively wait for alerts and notify the user via the buzzer and the action button LED. When an alert is received, the action button LED lights up and the buzzer buzzes, whereas a message (referred to as a "page") will only see the action button LED light up.
+Personal nodes will NOT rebroadcast any messages, and instead passively wait for alerts and notify the user via the action button LED. When an alert is received, the action button LED lights up, whereas a message (referred to as a "page") will have no action.
 
 # Usage
-When uploading to a device, simply set the status.mode in setup to whichever node mode is needed for the device, and upload. The network information can be modified in the secrets.h file, where the frequecy for the network and the network and access codes can be changed.
+When uploading to a device, simply set define either `MODE_NETWORK` or `MODE_PERSONAL` in config.h to whichever node mode is needed for the device, and upload. The network information can be modified in the secrets.h file, where the frequecy for the network and the network and access codes can be changed.
 
 The GPS modules do not work well indoors, so the time may not sync when testing indoors.
 
@@ -42,3 +41,7 @@ The project is set up using VS Code and PlatformIO, using the following librarie
 *LoRa by Sandeep Mistry (Available in PlatformIO)
 *TinyGPSPlus (included in lib/)
 *ThingPulse OLED SSD1306 (included in lib/)
+
+# Damage Done
+This project has seen me have horrendous luck when it comes to parts. Some parts never showed up, some parts gave up (BOTH temperature sensors no longer function after being driven by 3.3v, the same as when driven by the Nano 33 IoT...), and some parts simply would not cooperate with the ESP32 (mainly the buzzer).
+The parts order containing the GPS receivers and air quality sensors arrived only a few days ago, making the prototyping stage more of a rapid prototying frenzy instead of a light jog through the park at night.
