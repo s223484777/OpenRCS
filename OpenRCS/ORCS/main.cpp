@@ -42,8 +42,10 @@ void loop() {
   if(loraUpdate()){
     if(loraMessage(msg)){
       // Message timestamp from GPS
-      char timestamp[10];
-      sprintf(timestamp, "%02d:%02d:%02d", status.gps.time.hour(), status.gps.time.minute(), status.gps.time.second());
+      //char timestamp[10];
+      //sprintf(timestamp, "%02d:%02d:%02d", status.gps.time.hour(), status.gps.time.minute(), status.gps.time.second());
+      // Timestamp set in loranet.cpp
+      //msg.timestamp = timestamp;
     }
   }
 

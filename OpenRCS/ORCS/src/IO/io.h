@@ -1,5 +1,6 @@
 #ifndef ORCS_INPUTS
 #define ORCS_INPUTS
+
 #include<src/objects.h>
 
 // Signatures

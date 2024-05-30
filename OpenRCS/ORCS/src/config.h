@@ -1,8 +1,9 @@
 #ifndef ORCS_CONFIG
 #define ORCS_CONFIG
 
-#define MODE_NETWORK
-//#define MODE_PERSONAL
+// Uncomment the desired configuration
+//#define MODE_NETWORK // 15964/255822
+//#define MODE_PERSONAL // 15956/255026
 
 // Includes
 #include<src/secrets.h>
